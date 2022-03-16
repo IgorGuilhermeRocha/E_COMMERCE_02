@@ -5,7 +5,7 @@ from PIL import Image
 import os
 from django.conf import settings
 
-# Create your models here.
+
 
 class Product(models.Model):
 
@@ -15,9 +15,6 @@ class Product(models.Model):
     slug =  models.SlugField(unique=True)
     original_price = models.FloatField()
     promotional_price = models.FloatField(default=0)
-
- 
-
 
 
     @staticmethod
@@ -39,15 +36,14 @@ class Product(models.Model):
         print("Imagem red")
 
       
-
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
         max_image_size = 800
 
-        if(self.imagem):
-            self.resize_image(self.imagem, max_image_size)
+        if(self.image):
+            self.resize_image(self.image, max_image_size)
 
 
     def __str__ (self):
-        return self.nome
+        return self.name
